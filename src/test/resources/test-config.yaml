@@ -1,0 +1,49 @@
+servers:
+  default:
+    ip: 127.0.0.1
+    port: 4723
+    start_up_time_out_seconds: 120
+    no_reset: true
+    external: true
+    appium_js_path: C:\Users\Ideapad\AppData\Roaming\npm\node_modules\appium\build\lib\main.js
+  other:
+    ip: 127.0.0.1
+    port: 4724
+    start_up_time_out_seconds: 60
+    no_reset: true
+
+devices:
+  android:
+    device_type: ANDROID
+    device_name: Mi4
+    device_version: 6.0.1
+    app_type: HYBRID
+    automation_name: APPIUM
+    app_location: apps/android/nelnet_1_0_19_dev.apk
+    app_package: com.corfire.cwp.app
+    app_activity: com.corfire.cwp.app.activity.nelnet.MainActivity
+    app_wait_activity: com.corfire.cwp.app.activity.nelnet.WalkthroughActivity
+  iphone:
+    device_type: IOS
+    device_name: iPhone 6
+    device_version: 10.3.1
+    udid: 2b2619cad6db2e465828fbf3064addc1d8303ee2
+    bundle_id: com.talosdigital.NelnetClient
+    app_type: HYBRID
+    app_location: /Users/wasiq.bhamla/Downloads/Payload/Nelnet.app
+    automation_name: XCUI
+    app_name: Campus Key
+    bootstrap_path: /usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent
+    agent_path: /usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj
+  iphone_simulator:
+    device_type: IOS
+    device_name: iPhone 6
+    device_version: 10.3.1
+    udid: 7F601BB1-C1DE-49F5-A3C5-32849082E664
+    bundle_id: com.talosdigital.NelnetClient
+    app_type: HYBRID
+    app_location: /Users/wasiq.bhamla/Downloads/Payload/Nelnet.app
+    automation_name: XCUI
+    app_name: Campus Key
+    bootstrap_path: /usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent
+    agent_path: /usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj

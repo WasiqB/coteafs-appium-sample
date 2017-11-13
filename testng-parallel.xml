@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests" thread-count="2">
+	<test name="WB">
+		<classes>
+			<class name="com.github.wasiqb.coteafs.appium.android.ExpenseTrackerTest" />
+			<parameter name="server" value="android" />
+			<parameter name="device" value="test" />
+			<!-- <class name="appium.AppiumTest" /> -->
+		</classes>
+	</test> <!-- Test -->
+	<test name="FK">
+		<classes>
+			<class name="com.github.wasiqb.coteafs.appium.android.ExpenseTrackerTest" />
+			<parameter name="server" value="android_fk" />
+			<parameter name="device" value="test_fk" />
+			<!-- <class name="appium.AppiumTest" /> -->
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
