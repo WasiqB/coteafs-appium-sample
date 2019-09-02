@@ -15,10 +15,13 @@
  */
 package com.github.wasiqb.coteafs.appium.android;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
+import com.github.wasiqb.coteafs.appium.android.vodqa.activities.MainActivity;
 import com.github.wasiqb.coteafs.appium.service.AppiumServer;
 
 /**
@@ -27,7 +30,17 @@ import com.github.wasiqb.coteafs.appium.service.AppiumServer;
  */
 public class DefaultTest {
 	protected AndroidDevice	androidDevice;
+	protected MainActivity	main;
 	private AppiumServer	androidServer;
+
+	/**
+	 * @author wasiqb
+	 * @since Oct 13, 2018
+	 */
+	@BeforeMethod
+	public void setupMethod () {
+		this.androidDevice.startRecording ();
+	}
 
 	/**
 	 * @author wasiq.bhamla
@@ -36,24 +49,33 @@ public class DefaultTest {
 	 * @since 13-Apr-2017 10:10:45 PM
 	 */
 	@Parameters ({ "server", "device" })
-	@BeforeClass (alwaysRun = true)
-	public void setupTestSuite (final String server, final String device) {
+	@BeforeTest
+	public void setupTest (final String server, final String device) {
 		this.androidServer = new AppiumServer (server);
 		this.androidServer.start ();
 
 		this.androidDevice = new AndroidDevice (this.androidServer, device);
 		this.androidDevice.start ();
+
+		this.main = new MainActivity (this.androidDevice);
+	}
+
+	/**
+	 * @author wasiqb
+	 * @since Oct 20, 2018
+	 */
+	@AfterMethod
+	public void teardownMethod () {
+		this.androidDevice.stopRecording ();
 	}
 
 	/**
 	 * @author wasiq.bhamla
 	 * @since 17-Apr-2017 3:47:41 PM
 	 */
-	@AfterClass (alwaysRun = true)
-	public void tearDownTestSuite () {
-		if (this.androidServer != null && this.androidDevice != null) {
-			this.androidDevice.stop ();
-			this.androidServer.stop ();
-		}
+	@AfterTest
+	public void tearDownTest () {
+		this.androidDevice.stop ();
+		this.androidServer.stop ();
 	}
 }

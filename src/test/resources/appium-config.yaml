@@ -1,0 +1,47 @@
+server: &default_server
+  appium_js_path: /usr/local/lib/node_modules/appium/build/lib/main.js
+  node_path: /usr/local/opt/node@8/bin/node
+  arguments:
+    log_level: DEBUG
+    log_time_stamp: true
+    local_time_zone: true
+    session_override: true
+    android:
+      suppress_adb_kill_server: true
+
+servers:
+  android:
+    host: 0.0.0.0
+    port: 4723
+    <<: *default_server
+
+device: &default_device
+  platform_type: ANDROID
+  app_type: HYBRID
+  device_type: REAL
+  session_timeout: 120000
+  clear_system_files: true
+  no_reset: false
+  full_reset: true
+  playback:
+    record:
+      enabled: false
+    delay_before_swipe: 200
+    delay_after_swipe: 100
+    delay_before_tap: 0
+    delay_after_tap: 0
+
+devices:
+  test_local:
+    device_name: emulator-5554
+    device_version: 8.1
+    app_location: apps/android/VodQA.apk
+    automation_name: UIAUTOMATOR2
+    <<: *default_device
+    device_type: SIMULATOR
+    android:
+      avd: Nexus_5X_API_28_x86
+      avd_launch_timeout: 60000
+      avd_ready_timeout: 60000
+      avd_args: -gpu swiftshader_indirect
+      apk_install_timeout: 60000
